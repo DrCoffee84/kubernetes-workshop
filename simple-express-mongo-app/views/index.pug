@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  img(src='https://www.taglatam.com/wp-content/uploads/2021/04/Asset-1@0.5x.png' alt='login')
+  h1= title
+  p This is an application is developer by me (Daniel Boullon) to test exposition unto public internet and the connectivity with mongodb in kubernetes. 
+  p Is a very basic application with two servicies in /users:  
+  h3 GET /users
+  p find all in mongodb in namespace "taglatam"
+  h3 POST /users 
+  p insert in mongodb in namespace "taglatam"
+  h4 Schema: 
+  p  {"lastname": "Boullon","name": "Daniel","email": "dboullon@taglatam.com"}
+
+  br
+
+  p note: you can test this application with npm test. 
