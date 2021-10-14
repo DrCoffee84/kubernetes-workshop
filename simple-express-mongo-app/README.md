@@ -12,3 +12,9 @@ curl --location --request POST 'http://localhost:3000/users' \
     "email": "dboullon@taglatam.com"
 }'
 ```
+
+
+build image
+```bash
+docker build . -t dboullon/simple-express-mongo-app
+```
