@@ -1,10 +1,6 @@
 # kubernetes-workshop
 https://miro.com/app/board/o9J_lq0-Tnw=/
 
-
-# kubernetes-workshop
-https://miro.com/app/board/o9J_lq0-Tnw=/
-
 Commands to copy-paste:
 
 Verify docker installations with command run
