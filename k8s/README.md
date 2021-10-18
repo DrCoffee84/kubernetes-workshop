@@ -1,37 +1,54 @@
 # Kubernetes 
 
-Create namespace
+### Create namespace
 ```bash
-kubectl create namespace test
+NAMESPACE=test
+kubectl create namespace ${NAMESPACE}
 kubectl get namespace
 ```
 
-Create first pod :) 
+### Create first pod :) 
 ```bash
-kubectl create -f ./k8s/pod-min.yaml -n test
+kubectl create -f ./k8s/pod-min.yaml -n  ${NAMESPACE}
+
+# Enter to the pod with sh 
 kubectl exec -it nginx -- sh
 ps fax
 ```
 
-Get pods 
+### Get pods 
 ```bash
 kubectl get pod
 ```
 
 if it fails it is because you are missing the namespace
 ```bash
-kubectl get pod -n test
+kubectl get pod -n  ${NAMESPACE}
 ```
 or you can change namespace context
 ```bash
-kubectl config set-context --current --namespace=test
+kubectl config set-context --current --namespace= ${NAMESPACE}
 ```
 
-Delete first pod :( 
+### Delete first pod :( 
 ```bash
-kubectl delete -f ./k8s/pod-min.yaml -n test
+kubectl delete -f ./k8s/pod-min.yaml -n  ${NAMESPACE}
 ```
+
 Or delete by name
 ```bash
-kubectl delete pod test-app -n test
+kubectl delete pod nginx -n ${NAMESPACE}
+```
+
+
+### Create Deployment
+
+```bash
+kubectl apply -f k8s/deploy-min.yaml -n ${NAMESPACE}
+```
+
+### Get Deployment
+
+```bash
+kubectl get deployment nginx-deployment -n ${NAMESPACE}
 ```

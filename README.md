@@ -1,10 +1,6 @@
 # kubernetes-workshop
 https://miro.com/app/board/o9J_lq0-Tnw=/
 
-
-# kubernetes-workshop
-https://miro.com/app/board/o9J_lq0-Tnw=/
-
 Commands to copy-paste:
 
 Verify docker installations with command run
@@ -59,6 +55,8 @@ alias k='kubectl'
 source ~/.bashrc # or exec bash
 ```
 
-## Jugar con kubernetes
+## Play basic with Kubernetes
 
-## Desplegar simple-express-mongo-app
+see this documentation [here](k8s\README.md)
+
+## Deploy simple-express-mongo-app
