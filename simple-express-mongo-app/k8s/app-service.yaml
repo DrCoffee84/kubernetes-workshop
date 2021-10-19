@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-express-mongo-service
+  namespace: simple-express-mongo
+spec:
+  selector:
+    app: simple-express-mongo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+
+
+#      <service-name>.<namespace>.svc.cluster.local:<service-port>
+#      simple-express-mongo-service.simple-express-mongo.svc.cluster.local:80

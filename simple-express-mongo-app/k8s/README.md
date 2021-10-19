@@ -50,3 +50,40 @@ k apply -f ./simple-express-mongo-app/k8s/app-configmap.yaml
 ```bash
 kubectl create -f ./simple-express-mongo-app/k8s/app-pod.yaml
 ```
+
+### Create deployment for mongo db 
+```bash
+kubectl apply -f ./simple-express-mongo-app/k8s/mongo-deployment.yaml
+```
+
+### Create deployment for simple-express-mongo-app
+```bash
+kubectl apply -f ./simple-express-mongo-app/k8s/app-deployment.yaml
+```
+
+### Create service for simple-express-mongo-app
+```bash
+kubectl apply -f ./simple-express-mongo-app/k8s/app-service.yaml
+```
+
+## test from another pod 
+```bash
+POD=simple-express-mongo-app-deployment-7b76df689c-4fznq
+kubectl exec -it ${POD} -- sh
+REST API:
+
+curl --location --request GET 'http://simple-express-mongo-service.simple-express-mongo.svc.cluster.local:80/users'
+
+curl --location --request POST 'http://simple-express-mongo-service.simple-express-mongo.svc.cluster.local:80/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "lastname": "Boullon",
+    "name": "Daniel",
+    "email": "dboullon@taglatam.com"
+}'
+```
+
+### Create ingress for simple-express-mongo-app (hasta aca llegue)
+```bash
+kubectl apply -f ./simple-express-mongo-app/k8s/app-ingress.yaml
+```
