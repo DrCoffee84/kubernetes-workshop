@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-require('dotenv').config()
+const config = require('config');
 var validate = require('express-jsonschema').validate;
 var bodyParser = require('body-parser');
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://"+process.env.DB_HOST+"/taglatam";
+var url = "mongodb://"+config.get('mongodb.host')+"/taglatam";
 
 var PersonSchema = {
   type: 'object',

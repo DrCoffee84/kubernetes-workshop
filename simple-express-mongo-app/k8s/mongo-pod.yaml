@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mongo-pod
+  namespace: simple-express-mongo
+  labels:
+    app: mongo
+spec:
+  containers:
+    - name: mongo
+      image: 'mongo:latest'
+      ports:
+        - containerPort: 27017
+          protocol: TCP

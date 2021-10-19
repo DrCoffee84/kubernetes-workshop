@@ -2,7 +2,19 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: simple-express-mongo-app-pod
+  namespace: simple-express-mongo
 spec:
   containers:
   - name: simple-express-mongo-app
     image: dboullon/simple-express-mongo-app
+    env: 
+    - name: NODE_ENV
+      value: dev
+    volumeMounts:
+    - name: volumen-config
+      mountPath: /usr/src/app/config/
+  ### Fin de containers.
+  volumes: 
+  - name: volumen-config
+    configMap: 
+      name: app-configmap

@@ -9,15 +9,14 @@ var usersRouter = require('./routes/users');
 var healthRouter = require('./routes/health');
 
 var app = express();
-require('dotenv').config()
+const config = require('config');
 
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://"+process.env.DB_HOST+"/taglatam";
+var url = "mongodb://"+config.get('mongodb.host')+"/taglatam";
 
-
+console.log("Connecting: " + url);
 MongoClient.connect(url, function(err, db) {
-  console.log("Connecting to mongodb!");
   if (err) throw err;
   console.log("Database taglatam working!");
   var dbo = db.db("taglatam");

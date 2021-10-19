@@ -1,8 +1,5 @@
 # kubernetes-workshop
-https://miro.com/app/board/o9J_lq0-Tnw=/
 
-
-# kubernetes-workshop
 https://miro.com/app/board/o9J_lq0-Tnw=/
 
 Commands to copy-paste:
@@ -21,7 +18,7 @@ kubectl config view
 
 Run a instance of mongodb in container
 ```bash
-docker run --rm -p 27017:27017 mongo
+docker run --rm -p 27017:27017 --name mongo-docker mongo
 ```
 
 Verify nodeJS installation and test application
@@ -36,20 +33,39 @@ Start and test aplication
 ```bash
 npm start
 npm test
+
+# Use another config file
+export NODE_ENV=localhost 
 ```
 
 # Docker
 
-Create image
+### Create and run
 ```bash
-docker build . -t dboullon/simple-express-mongo-app
+USER=dboullon
+docker build . -t ${USER}/simple-express-mongo-app
+
+# run image 
+docker run -p 3000:3000 --rm --name simple-express-mongo-docker dboullon/simple-express-mongo-app
+## don't work until the network had set
 ```
 
-push image
+### Create network (to test app)
 ```bash
-docker push dboullon/simple-express-mongo-app:latest
+docker network create simple-express-mongo-network
+docker network connect simple-express-mongo-network --alias=mongo-network mongo-docker
+
+docker network inspect simple-express-mongo-network
+
+docker run -itd --network=simple-express-mongo-network nginx 
+
+docker run -p 3000:3000 --rm --name simple-express-mongo-docker --env NODE_ENV=docker --network=simple-express-mongo-network dboullon/simple-express-mongo-app 
 ```
 
+### Push image
+```bash
+docker push ${USER}/simple-express-mongo-app:latest
+```
 # Kubernetes 
 
 alias
@@ -61,6 +77,8 @@ source ~/.bashrc # or exec bash
 
 ## Play basic with Kubernetes
 
-see this documentation [here](k8s\README.md)
+see this documentation [here](k8s/README.md)
 
-## Deploy simple-express-mongo-app
+## Deploy simple-express-mongo app
+
+see this documentation [here](simple-express-mongo-app/k8s/README.md)

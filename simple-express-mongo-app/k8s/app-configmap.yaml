@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+  namespace: simple-express-mongo
+data:
+  ip.json: |
+    {
+      "mongodb": {
+        "host": "10.108.234.251:80"
+      }
+    }   
+  dev.json: |
+    {
+      "mongodb": {
+        "host": "mongo-service.simple-express-mongo.svc.cluster.local:80"
+      }
+    }   
+
+
+
+     

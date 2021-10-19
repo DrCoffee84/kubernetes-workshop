@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-express-mongo-app-deployment
+  namespace: simple-express-mongo
+  labels:
+    app: simple-express-mongo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-express-mongo-app
+  template:
+    metadata:
+      labels:
+        app: simple-express-mongo-app
+    spec:
+      containers:
+      - name: simple-express-mongo-app
+        image: dboullon/simple-express-mongo-app
+        env: 
+        - name: NODE_ENV
+          value: dev
+        volumeMounts:
+        - name: config
+          mountPath: /usr/src/app/config/
+      ### Fin de containers.
+      volumes: 
+      - name: config
+        configMap: 
+          name: app-configmap
