@@ -1,6 +1,6 @@
 # kubernetes-workshop
 
-https://miro.com/app/board/o9J_lq0-Tnw=/
+https://miro.com/app/board/o9J_lnpoUFU=/?invite_link_id=781817443477
 
 Commands to copy-paste:
 
